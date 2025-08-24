@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+
+// main() is where program execution begins.
+int main() {
+   float a,b,c,d,e;
+   cout<<"enter your value:";
+   cin>>a>>b>>c>>d>>e;
+   cout<<"entered values are:"<<a<<" "<<b<<" "<<c<<" "<<d<<" "<<e<<endl;
+   return 0;
+}
+   
