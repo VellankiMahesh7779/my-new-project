@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk'
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
         PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
     }
     stages {
@@ -17,10 +17,14 @@ pipeline {
                     steps {
                         dir('CPP_Project') {
                             sh '''
-                                mkdir -p build
-                                cd build
-                                cmake ..
-                                make -j4
+                                if [ -f CMakeLists.txt ]; then
+                                    mkdir -p build
+                                    cd build
+                                    cmake ..
+                                    make -j4
+                                else
+                                    echo "No CMakeLists.txt found in CPP_Project"
+                                fi
                             '''
                         }
                     }
@@ -28,7 +32,7 @@ pipeline {
                 stage('Build Java') {
                     steps {
                         dir('Java_Project') {
-                            sh 'javac *.java || echo "No Java files found"'
+                            sh 'javac *.java || echo "No Java files found in Java_Project"'
                         }
                     }
                 }
@@ -56,19 +60,18 @@ pipeline {
 
         stage('Package / Deploy') {
             steps {
-                echo 'Add packaging or deployment steps here if needed'
+                echo "Add packaging or deployment steps here"
             }
         }
     }
 
     post {
         success {
-            githubNotify context: 'CI/CD Pipeline', status: 'SUCCESS'
-            echo 'Build & Tests succeeded!'
+            echo 'Pipeline completed successfully!'
         }
         failure {
-            githubNotify context: 'CI/CD Pipeline', status: 'FAILURE'
-            echo 'Build or Tests failed!'
+            echo 'Pipeline failed. Check logs for details.'
         }
     }
 }
+
