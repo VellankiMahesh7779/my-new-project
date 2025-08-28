@@ -5,7 +5,7 @@ int main() {
     int a = 10;
     int b = 20;
     int sum = a + b;
-    cout << "Sum: " << summ << endl;
+    cout << "Sum: " << sum << endl;
     cout << "Hello Mahesh, C++!" << endl;
 
     return 0;
