@@ -7,6 +7,7 @@ LOG_FILE="build.out"
 # Java
 echo "==== Building Java ====" | tee -a $LOG_FILE
 cd Java_Project
+
 if [ "$(ls -1 *.java 2>/dev/null)" ]; then
     if javac -d bin *.java >> ../$LOG_FILE 2>&1; then
         echo "==== Java build SUCCESS👍 ====" | tee -a ../$LOG_FILE
@@ -15,6 +16,12 @@ if [ "$(ls -1 *.java 2>/dev/null)" ]; then
     fi
 else
     echo "No Java files to compile" | tee -a $LOG_FILE
+mkdir -p bin
+if javac -d bin *.java >> ../$LOG_FILE 2>&1; then
+    echo "==== Java build SUCCESS ====" | tee -a ../$LOG_FILE
+else
+    echo "==== Java build FAILED ====" | tee -a ../$LOG_FILE
+
 fi
 cd ..
 
@@ -26,6 +33,9 @@ if cmake .. >> ../../$LOG_FILE 2>&1 && make >> ../../$LOG_FILE 2>&1; then
     echo "==== C++ build SUCCESS👍 ====" | tee -a ../../$LOG_FILE
 else
     echo "==== C++ build FAILED👎 ====" | tee -a ../../$LOG_FILE
+    echo "==== C++ build SUCCESS ====" | tee -a ../../$LOG_FILE
+else
+    echo "==== C++ build FAILED ====" | tee -a ../../$LOG_FILE
 fi
 cd ../..
 
