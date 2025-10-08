@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        cron('0 19 * * *')
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
@@ -46,33 +50,7 @@ pipeline {
             }
         }
 
-        stage('Build Standalone C++ (Root)') {
-            steps {
-                sh '''#!/bin/bash
-                    set -o pipefail
-                    if ls *.cpp >/dev/null 2>&1; then
-                        echo "=== Compiling standalone C++ files in root directory ==="
-                        g++ *.cpp -o output_cpp 2>&1 | tee cpp_root_build.log
-                    else
-                        echo "⚠️ No standalone C++ files found in root"
-                    fi
-                '''
-            }
-        }
-
-        stage('Build Standalone Java (Root)') {
-            steps {
-                sh '''#!/bin/bash
-                    set -o pipefail
-                    if ls *.java >/dev/null 2>&1; then
-                        echo "=== Compiling standalone Java files in root directory ==="
-                        javac *.java 2>&1 | tee java_root_build.log
-                    else
-                        echo "⚠️ No standalone Java files found in root"
-                    fi
-                '''
-            }
-        }
+        // ...existing code...
     }
 
     post {
