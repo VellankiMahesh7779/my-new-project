@@ -1,6 +1,6 @@
 Jenkins Build Testing Repository
 
-This repository is created solely for testing Jenkins builds. It is used to verify whether any changes in the code introduce internal errors or build failures.
+This repository is created purely for testing Jenkins builds. It is used to verify whether any changes in the code introduce internal errors or build failures.
 
 Purpose:
 
