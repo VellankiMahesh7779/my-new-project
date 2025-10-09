@@ -10,7 +10,7 @@ int main() {
   myFunction("mahesh");
   myFunction("Kiran");
   myFunction("Anil");
-  myfunction("anusha");
-  myfucntion("narendra");
+  myFunction("anusha");
+  myFunction("narendra");
   return 0;
 }
