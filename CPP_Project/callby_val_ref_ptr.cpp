@@ -37,3 +37,15 @@ int main() {
 
     return 0; // Indicate successful program termination
 }
+/* 🔹 Call by Value:
+A COPY of the variable is passed to the function.
+Changes made inside the function do NOT affect the original variable.
+
+🔹 Call by Reference:
+The actual variable is passed using a reference (&).
+Changes made inside the function directly affect the original variable.
+
+🔹 Call by Pointer:
+The ADDRESS of the variable is passed using a pointer (*).
+By using the pointer, we can modify the original variable’s value.
+*/
