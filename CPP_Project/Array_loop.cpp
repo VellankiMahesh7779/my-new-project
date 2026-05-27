@@ -4,7 +4,7 @@ using namespace std;
 int main()
 {
     int i;
-    string cars[4]={"volvo","Bmw","Tesla","Ford"};
+    string cars[4]={"volvo","Bmw","honda","Ford"};
     for(i=0;i<4;i++){
     cout<<i<<".\n"<<"name of the car="<<cars[i]<<"\n";
 }
